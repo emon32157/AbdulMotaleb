@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Abdul Motaleb | Personal Portfolio</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Abdul Motaleb – Modern personal portfolio from Feni, Bangladesh. Facebook-style clean UI.">
+<meta property="og:title" content="Abdul Motaleb | Personal Portfolio">
+<meta property="og:image" content="https://iili.io/fe0CKOv.md.jpg">
+
+<style>
+:root{
+  --primary:#1877f2;
+  --card:#ffffff;
+  --text:#1c1e21;
+  --muted:#65676b;
+  --radius:14px;
+  --shadow:0 8px 20px rgba(0,0,0,.08);
+}
+
+*{margin:0;padding:0;box-sizing:border-box}
+
+body{
+  font-family:system-ui,-apple-system,BlinkMacSystemFont,sans-serif;
+  color:var(--text);
+  line-height:1.6;
+  scroll-behavior:smooth;
+  transition:background 1s linear;
+}
+
+img{max-width:100%;display:block;border-radius:var(--radius)}
+a{text-decoration:none;color:inherit}
+
+/* HEADER */
+header{
+  position:sticky;
+  top:0;
+  background:var(--card);
+  box-shadow:var(--shadow);
+  z-index:1000;
+}
+
+.nav{
+  max-width:1200px;
+  margin:auto;
+  padding:14px 20px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+}
+
+.logo{
+  font-size:22px;
+  font-weight:700;
+  color:var(--primary);
+}
+
+.nav ul{
+  list-style:none;
+  display:flex;
+  gap:22px;
+}
+
+.nav ul li a{
+  font-weight:500;
+  position:relative;
+}
+
+.nav ul li a::after{
+  content:"";
+  position:absolute;
+  bottom:-4px;
+  left:0;
+  width:0;
+  height:2px;
+  background:var(--primary);
+  transition:.3s;
+}
+
+.nav ul li a:hover::after{width:100%}
+
+.menu-btn{
+  display:none;
+  font-size:26px;
+  cursor:pointer;
+}
+
+/* SECTIONS */
+section{
+  max-width:1200px;
+  margin:auto;
+  padding:70px 20px;
+}
+
+h2{margin-bottom:25px;font-size:28px}
+
+/* HERO */
+.hero{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:40px;
+  align-items:center;
+}
+
+.card{
+  background:var(--card);
+  padding:35px;
+  border-radius:var(--radius);
+  box-shadow:var(--shadow);
+  animation:fadeUp .8s ease forwards;
+}
+
+.hero h1{
+  font-size:40px;
+  margin-bottom:12px;
+}
+
+.hero p{
+  color:var(--muted);
+  margin-bottom:25px;
+}
+
+.btn{
+  padding:12px 22px;
+  border-radius:10px;
+  font-weight:600;
+  background:var(--primary);
+  color:#fff;
+  display:inline-block;
+  transition:.3s;
+}
+
+.btn:hover{
+  transform:translateY(-2px);
+  box-shadow:0 10px 20px rgba(24,119,242,.35);
+}
+
+.btn.outline{
+  background:transparent;
+  color:var(--primary);
+  border:2px solid var(--primary);
+  margin-left:10px;
+}
+
+/* SLIDER */
+.slider{
+  position:relative;
+  overflow:hidden;
+  height:360px;
+  border-radius:var(--radius);
+}
+
+.slider img{
+  position:absolute;
+  inset:0;
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  opacity:0;
+  transition:opacity 1s ease;
+}
+
+.slider img.active{opacity:1}
+
+/* ABOUT */
+.about-info{
+  margin-top:18px;
+  display:grid;
+  gap:10px;
+  color:var(--muted);
+}
+
+.about-info div{margin-bottom:6px}
+
+/* GALLERY */
+.gallery{
+  display:grid;
+  grid-template-columns:repeat(auto-fill,minmax(160px,1fr));
+  gap:14px;
+}
+
+.gallery img{
+  cursor:pointer;
+  transition:.4s;
+}
+
+.gallery img:hover{
+  transform:scale(1.07);
+  box-shadow:var(--shadow);
+}
+
+/* LIGHTBOX */
+.lightbox{
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,.85);
+  display:none;
+  align-items:center;
+  justify-content:center;
+  z-index:2000;
+}
+
+.lightbox img{
+  max-width:90%;
+  max-height:90%;
+}
+
+/* CONTACT */
+.contact-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
+  gap:20px;
+}
+
+.contact-card{
+  background:var(--card);
+  padding:22px;
+  border-radius:var(--radius);
+  box-shadow:var(--shadow);
+  animation:fadeUp .8s ease forwards;
+}
+
+.whatsapp{
+  display:inline-block;
+  margin-top:25px;
+  background:#25d366;
+  color:#fff;
+  padding:12px 22px;
+  border-radius:10px;
+  font-weight:600;
+  transition:.3s;
+}
+
+.whatsapp:hover{
+  transform:translateY(-2px);
+  box-shadow:0 10px 20px rgba(37,211,102,.35);
+}
+
+/* FOOTER */
+footer{
+  background:var(--card);
+  text-align:center;
+  padding:28px 15px;
+  color:var(--muted);
+  box-shadow:var(--shadow);
+}
+
+/* ANIMATION */
+@keyframes fadeUp{
+  from{opacity:0;transform:translateY(25px)}
+  to{opacity:1;transform:none}
+}
+
+/* RESPONSIVE */
+@media(max-width:768px){
+  .hero{grid-template-columns:1fr}
+  .nav ul{
+    position:absolute;
+    top:60px;
+    right:0;
+    background:var(--card);
+    width:200px;
+    padding:18px;
+    flex-direction:column;
+    box-shadow:var(--shadow);
+    display:none;
+  }
+  .nav ul.show{display:flex}
+  .menu-btn{display:block}
+  .slider{height:260px}
+}
+</style>
+</head>
+<body>
+
+<header>
+  <nav class="nav">
+    <div class="logo">Abdul Motaleb</div>
+    <div class="menu-btn" onclick="toggleMenu()">☰</div>
+    <ul id="menu">
+      <li><a href="#home">Home</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#gallery">Gallery</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
+</header>
+
+<main>
+
+<section id="home" class="hero">
+  <div class="card">
+    <h1>Abdul Motaleb</h1>
+    <p>Modern, clean & professional personal portfolio inspired by Facebook-style UI.</p>
+    <a href="https://www.facebook.com/share/1BhuyzfwAf/" target="_blank" class="btn">Contact Me</a>
+    <a href="#gallery" class="btn outline">View Gallery</a>
+  </div>
+
+  <div class="card slider">
+    <img src="https://iili.io/fe0CKOv.md.jpg" class="active">
+    <img src="https://iili.io/fe0CfbR.md.jpg">
+    <img src="https://iili.io/fe0CHf1.md.jpg">
+    <img src="https://iili.io/fe0CBxp.md.jpg">
+    <img src="https://iili.io/fe0Cz0X.md.jpg">
+    <img src="https://iili.io/fe0CuJs.md.jpg">
+    <img src="https://iili.io/fe0C5b4.md.jpg">
+    <img src="https://iili.io/fe0CYzl.md.jpg">
+    <img src="https://iili.io/fe0CcsS.md.jpg">
+    <img src="https://iili.io/fe0C0q7.md.jpg">
+    <img src="https://iili.io/fe0CEge.md.jpg">
+    <img src="https://iili.io/fe0Y3dl.md.jpg">
+  </div>
+</section>
+
+<section id="about">
+  <div class="card">
+    <h2>About Me</h2>
+    <p>Hello! I'm Abdul Motaleb from Feni, Bangladesh. I create modern, fast-loading and user-friendly websites with clean and appealing design. I specialize in HTML, CSS, JavaScript and modern web UI/UX. Passionate about problem-solving and building interactive experiences, I continuously learn and adapt new technologies. I love creating solutions that are intuitive, efficient, and visually engaging.</p>
+    <div class="about-info">
+      <div>📍 Feni, Bangladesh</div>
+      <div>📞 +8801624897662</div>
+      <div>✉️ emd383231@gmail.com</div>
+      <div>💻 Skills: HTML, CSS, JavaScript, UI/UX Design, Web Development</div>
+      <div>🌐 Languages: Bengali, English</div>
+    </div>
+  </div>
+</section>
+
+<section id="gallery">
+  <h2>Gallery</h2>
+  <div class="gallery">
+    <img src="https://iili.io/fe0CKOv.md.jpg">
+    <img src="https://iili.io/fe0CfbR.md.jpg">
+    <img src="https://iili.io/fe0CHf1.md.jpg">
+    <img src="https://iili.io/fe0CBxp.md.jpg">
+    <img src="https://iili.io/fe0Cz0X.md.jpg">
+    <img src="https://iili.io/fe0CuJs.md.jpg">
+    <img src="https://iili.io/fe0C5b4.md.jpg">
+    <img src="https://iili.io/fe0CYzl.md.jpg">
+    <img src="https://iili.io/fe0CcsS.md.jpg">
+    <img src="https://iili.io/fe0C0q7.md.jpg">
+    <img src="https://iili.io/fe0CEge.md.jpg">
+    <img src="https://iili.io/fe0Y3dl.md.jpg">
+  </div>
+</section>
+
+<section id="contact">
+  <h2>Contact</h2>
+  <div class="contact-grid">
+    <div class="contact-card">📞 +8801624897662</div>
+    <div class="contact-card">✉️ emd383231@gmail.com</div>
+    <div class="contact-card">📍 Feni, Bangladesh</div>
+  </div>
+  <a class="whatsapp" href="https://wa.me/8801624897662" target="_blank">Chat on WhatsApp</a>
+</section>
+
+</main>
+
+<footer>
+  © Abdul Motaleb • Made with HTML, CSS & JavaScript
+</footer>
+
+<div class="lightbox" id="lightbox" onclick="this.style.display='none'">
+  <img id="lightboxImg">
+</div>
+
+<script>
+function toggleMenu(){
+  document.getElementById('menu').classList.toggle('show');
+}
+
+/* Background color animation */
+const colors = ["#f0f2f5","#e7f0ff","#fff5f5","#f5fff8","#f9f9ff"];
+let bgIndex = 0;
+setInterval(()=>{
+  document.body.style.background = colors[bgIndex];
+  bgIndex = (bgIndex + 1) % colors.length;
+},1000);
+
+/* Slider for all images */
+const sliderImages = document.querySelectorAll(".slider img");
+let sliderIndex = 0;
+setInterval(()=>{
+  sliderImages.forEach(img=>img.classList.remove("active"));
+  sliderIndex = (sliderIndex + 1) % sliderImages.length;
+  sliderImages[sliderIndex].classList.add("active");
+},3000);
+
+/* Gallery Lightbox */
+const galleryImgs = document.querySelectorAll(".gallery img");
+const lightbox = document.getElementById("lightbox");
+const lightboxImg = document.getElementById("lightboxImg");
+
+galleryImgs.forEach(img=>{
+  img.onclick = ()=>{
+    lightboxImg.src = img.src;
+    lightbox.style.display = "flex";
+  };
+});
+
+/* Smooth scroll for nav links */
+document.querySelectorAll('.nav ul li a').forEach(link=>{
+  link.addEventListener('click', function(e){
+    e.preventDefault();
+    const target = document.querySelector(this.getAttribute('href'));
+    target.scrollIntoView({behavior:'smooth'});
+    if(window.innerWidth<768){toggleMenu();}
+  });
+});
+</script>
+
+</body>
+</html>
